@@ -50,4 +50,7 @@
     - Add this README.md file manually, NOT through GitHub.
 1. Create a video showcasing the application and code. This video needs to be in the README file.
 
-_Feel free to expand upon this project and add extra features._ 
+_Feel free to expand upon this project and add extra features._
+
+#### Attributions
+- Favicon: <a href="https://www.flaticon.com/free-icons/shop" title="shop icons">Shop icons created by srip - Flaticon</a>
