@@ -101,6 +101,15 @@ app.delete("/delete_product", async (req, res) => {
   res.send({ data: `deleted ${productResponse.name}.` });
 });
 
+// '/view_shopping_cart' -> view all items on which the user has clicked the "BUY" button
+app.get("/view_shopping_cart", async (req, res) => {
+  let response = await Product.find({});
+
+  console.log(response);
+
+  res.json(response);
+});
+
 // PORT -> tell server where to listen
 app.listen(5000, () => {
   console.log(`Server is Listening on port 5000`);

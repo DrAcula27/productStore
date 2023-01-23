@@ -5,16 +5,33 @@
   --white: #fff;
 }
 
+/*css reset*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* global font */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/*footer support*/
+html {
+  position: relative;
+  min-height: 100vh;
 }
 
 /* page layout */
 #page-title {
   text-align: center;
   color: var(--navy-blue);
-  margin-bottom: 2em;
+  padding: 30px 0;
+  font-size: clamp(1.75rem, 4vw + 1rem, 3rem);
 }
 
 #navbar {
@@ -87,4 +104,46 @@ select {
   font-family: inherit;
   border: 2px solid var(--navy-blue);
   border-radius: 5px;
+}
+
+img {
+  max-width: 150px;
+  border: 1px solid var(--navy-blue);
+  border-radius: 50%;
+}
+
+/*footer*/
+#footer {
+  background-color: var(--navy-blue);
+  color: var(--white);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.fa-github,
+.fa-heart,
+.fa-linkedin {
+  color: var(--old-gold);
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover,
+.fa-linkedin:hover {
+  transform: rotateY(360deg) scale(1.4);
+}
+
+.fa-heart:hover {
+  transform: scale(1.3);
 }

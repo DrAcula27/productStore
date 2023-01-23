@@ -26,15 +26,23 @@ input:valid ~ span::after {
   padding-left: 5px;
 }
 
-#show-product-area {
-  font-weight: bold;
+#product-grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 10px;
   border: 2px solid var(--navy-blue);
   border-radius: 1em;
   margin: 30px auto;
-  padding: 0 20px;
-  max-width: 300px;
+  padding: 20px;
+  max-width: 90vw;
 }
 
-img {
-  max-width: 150px;
+.grid-item {
+  border: 1px solid var(--navy-blue);
+  background-color: var(--old-gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

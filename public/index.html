@@ -9,26 +9,47 @@
     <script defer src="./index.js"></script>
     <link rel="stylesheet" href="./common.css" />
     <link rel="stylesheet" href="./index.css" />
+    <!--font-awesome import for icons-->
+    <script
+      src="https://kit.fontawesome.com/940af2685d.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1 id="page-title">Welcome to the Product Store!</h1>
     <nav id="navbar">
       <button type="button" id="create-product-btn">Create A Product</button>
-      <button type="button" id="show-products-btn">Show All Products</button>
+      <form>
+        <div>
+          <input
+            type="search"
+            id="user-query"
+            name="user-query"
+            placeholder="Search for a Product"
+            required
+          />
+          <button id="search-btn">Search</button>
+          <span class="validity"></span>
+        </div>
+      </form>
+      <button type="button" id="shopping-cart-btn"><i class="fa-solid fa-cart-shopping"></i></button>
     </nav>
-    <form>
-      <div>
-        <input
-          type="search"
-          id="user-query"
-          name="user-query"
-          placeholder="Search"
-          required
-        />
-        <button id="search-btn">Search</button>
-        <span class="validity"></span>
-      </div>
-    </form>
-    <section id="show-product-area" class="hidden"></section>
+    <section id="product-grid"></section>
+    <footer id="footer">
+      <p>
+        ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        | Crafted with  <i class="fa-solid fa-heart"></i>  by DrAcula27 |
+      </p>
+      <a href="https://github.com/DrAcula27" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <p>|</p>
+      <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </footer>
   </body>
 </html>
