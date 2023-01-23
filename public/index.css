@@ -1,0 +1,40 @@
+form {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  font-size: 24px;
+  font-family: inherit;
+  padding: 10px;
+  border: 2px solid var(--navy-blue);
+  border-radius: 5px;
+}
+
+input:invalid ~ span::after {
+  content: "✖";
+  color: var(--navy-blue);
+  font-size: 24px;
+  padding-left: 5px;
+}
+
+input:valid ~ span::after {
+  content: "✓";
+  color: var(--old-gold);
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+#show-product-area {
+  font-weight: bold;
+  border: 2px solid var(--navy-blue);
+  border-radius: 1em;
+  margin: 30px auto;
+  padding: 0 20px;
+  max-width: 300px;
+}
+
+img {
+  max-width: 150px;
+}

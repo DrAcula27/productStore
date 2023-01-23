@@ -1,0 +1,90 @@
+/* global variables */
+:root {
+  --old-gold: #b3a369;
+  --navy-blue: #003057;
+  --white: #fff;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* page layout */
+#page-title {
+  text-align: center;
+  color: var(--navy-blue);
+  margin-bottom: 2em;
+}
+
+#navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 1.5em;
+}
+
+#navbar > button,
+button {
+  font-weight: bold;
+  font-size: 24px;
+  font-family: inherit;
+  padding: 10px 20px;
+  color: var(--white);
+  background-color: var(--old-gold);
+  border: 2px solid var(--navy-blue);
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 2px rgba(0, 48, 87, 0.4);
+}
+
+/* form layout */
+#container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 200px;
+  border: 1px solid var(--navy-blue);
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.input-container {
+  margin: 10px auto;
+  width: 175px;
+}
+
+.input-container > label {
+  color: var(--navy-blue);
+  font-size: 16px;
+  font-family: inherit;
+}
+
+input {
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px;
+  border: 2px solid var(--navy-blue);
+  border-radius: 5px;
+}
+
+select {
+  background-color: var(--white);
+  color: var(--navy-blue);
+  width: 175px;
+  padding: 5px 15px;
+  margin: 10px auto;
+  font-size: 16px;
+  font-family: inherit;
+  border: 2px solid var(--navy-blue);
+  border-radius: 5px;
+}
