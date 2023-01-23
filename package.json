@@ -1,0 +1,26 @@
+{
+  "name": "productstore",
+  "version": "1.0.0",
+  "description": "Per Scholas module 2 project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrAcula27/productStore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrAcula27/productStore/issues"
+  },
+  "homepage": "https://github.com/DrAcula27/productStore#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.4"
+  }
+}
