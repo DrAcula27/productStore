@@ -7,7 +7,7 @@
     <title>View A Product</title>
     <link rel="icon" href="../assets/shop.png" />
     <link rel="stylesheet" href="../common.css" />
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./index.css" />
     <script src="./index.js" defer></script>
     <!--font-awesome import for icons-->
     <script
@@ -37,7 +37,17 @@
       </button>
     </nav>
     <div id="error-msg-container" class="hidden"></div>
-    <div id="container"></div>
+    <div id="container">
+      <p>
+        <button id="buy-btn">Buy Now</button>
+        or
+        <button id="add-to-cart-btn">Add to Cart</button>
+      </p>
+      <button id="edit-btn">Edit this Product</button>
+      <button id="delete-btn" title="this is permanent!">
+        <i class="fa-solid fa-trash"></i> DELETE
+      </button>
+    </div>
     <footer id="footer">
       <p>
         ©

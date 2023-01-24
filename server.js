@@ -104,14 +104,12 @@ app.post("/update_product", async (req, res) => {
 
 // '/delete_product' -> delete a product using its id
 app.delete("/delete_product", async (req, res) => {
-  // frontend: fetch(`http://localhost:5000/delete_product/?idOfProduct=${id}`)
+  // frontend: fetch(`http://localhost:5000/delete_product?idOfProduct=${idOfProduct}`)
   let productID = req.query.idOfProduct;
 
-  let productResponse = await Product.delete({ _id: productID });
+  let productResponse = await Product.deleteOne({ _id: productID });
 
-  console.log(`${productResponse}`);
-
-  res.send({ data: `deleted ${productResponse.name}.` });
+  res.send({ data: `deleted ${productResponse}.` });
 });
 
 // '/view_shopping_cart' -> view all items on which the user has clicked the "BUY" button

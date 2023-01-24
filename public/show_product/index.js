@@ -33,21 +33,9 @@ const populateProductContainer = async () => {
           <p>Price: $${object.price}</p>
 
           <p>${object.inventory} in stock</p>
-
-          <p>
-            <button id="buy-btn">Buy Now</button> 
-            or 
-            <button id="add-to-cart-btn">Add to Cart</button>
-          </p>
-
-          <button id="edit-btn">Edit this Product</button>
-
-          <button id="delete-btn" title="this is permanent!">
-            <i class="fa-solid fa-trash"></i> DELETE
-          </button>
         `;
 
-      productContainer.appendChild(divTag);
+      productContainer.prepend(divTag);
     });
   });
 };
@@ -93,4 +81,24 @@ searchBtn.addEventListener("click", async (event) => {
 let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("keydown", () => {
   errorMsgDiv.classList.add("hidden");
+});
+
+// functionality to buy one of the product
+
+// functionality to add one of the product to the user's cart
+
+// functionality to edit the product
+
+// functionality to delete the product from the database
+let deleteBtn = document.getElementById("delete-btn");
+
+deleteBtn.addEventListener("click", async () => {
+  let response = await fetch(
+    `http://localhost:5000/delete_product?idOfProduct=${productIdFromURL}`,
+    {
+      method: "delete",
+    }
+  );
+
+  window.location.href = "../index.html";
 });
