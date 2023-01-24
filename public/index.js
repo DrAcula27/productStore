@@ -29,8 +29,7 @@ let searchBtn = document.getElementById("search-btn");
 
 searchBtn.addEventListener("click", async (event) => {
   event.preventDefault();
-  let userQuery = document.getElementById("user-query").value;
-  window.location.href = `./get_specific_product/${userQuery}`;
+  window.location.href = `./show_product`;
 });
 
 // functionality to move to a specific product's page when its grid item is clicked

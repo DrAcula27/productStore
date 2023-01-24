@@ -47,3 +47,5 @@ let homeBtn = document.getElementById("go-home-btn");
 homeBtn.addEventListener("click", () => {
   window.location.href = "../index.html";
 });
+
+// functionality to view the cart
