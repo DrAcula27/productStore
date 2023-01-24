@@ -64,6 +64,15 @@ button:hover {
   box-shadow: 2px 2px 2px 2px rgba(0, 48, 87, 0.4);
 }
 
+/* error message container */
+#error-msg-container {
+  margin: 10px auto;
+  padding: 10px;
+  max-width: 400px;
+  border: 2px solid var(--navy-blue);
+  border-radius: 1em;
+}
+
 /* create product form layout */
 #container {
   margin: 0 auto;

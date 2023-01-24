@@ -64,20 +64,33 @@ app.post("/create_product", async (req, res) => {
 app.get("/get_products", async (req, res) => {
   let response = await Product.find({});
 
-  console.log(response);
-
   res.json(response);
 });
 
-// '/get_specific_product/:product_id' -> responds with one specific Product from the collection
+// '/get_specific_product/:product_id' -> responds with one specific Product from the collection, based on the id
 app.get("/get_specific_product/:product_id", async (req, res) => {
   let productToShow = req.params.product_id;
+
+  let productRes = await Product.find({ _id: productToShow });
+
+  res.json(productRes);
+});
+
+// '/search/:product_name' -> responds with one specific Product from the collection, based on the name
+app.get("/search/:product_name", async (req, res) => {
+  let productToShow = req.params.product_name;
 
   let regex = new RegExp(["^", productToShow, "$"].join(""), "i");
 
   let productRes = await Product.find({ name: regex });
+  
+  console.log(productRes);
 
-  res.json(productRes);
+  if (productRes.length < 1) {
+    res.json("This product is not in the database.");
+  } else {
+    res.json(productRes);
+  }
 });
 
 // '/update_product' -> use information from req.body to update the specific product
