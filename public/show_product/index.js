@@ -62,11 +62,11 @@ homeBtn.addEventListener("click", () => {
 
 // functionality to search for a product
 let searchBtn = document.getElementById("search-btn");
+let errorMsgDiv = document.getElementById("error-msg-container");
 
 searchBtn.addEventListener("click", async (event) => {
   event.preventDefault();
   let userQuery = document.getElementById("user-query").value;
-  let errorMsgDiv = document.getElementById("error-msg-container");
 
   if (userQuery === "") {
     errorMsgDiv.classList.remove("hidden");
@@ -81,10 +81,16 @@ searchBtn.addEventListener("click", async (event) => {
       if (product_id) {
         window.location.href = `../show_product?clickedProductId=${product_id}`;
       } else {
+        errorMsgDiv.classList.remove("hidden");
         errorMsgDiv.style.color = "red";
         errorMsgDiv.innerHTML =
           "<h2>That product is not in the database. Please search for another product.</h2>";
       }
     } catch (error) {}
   }
+});
+
+let searchBar = document.getElementById("user-query");
+searchBar.addEventListener("keydown", () => {
+  errorMsgDiv.classList.add("hidden");
 });

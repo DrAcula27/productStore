@@ -84,8 +84,6 @@ app.get("/search/:product_name", async (req, res) => {
 
   let productRes = await Product.find({ name: regex });
   
-  console.log(productRes);
-
   if (productRes.length < 1) {
     res.json("This product is not in the database.");
   } else {
@@ -100,7 +98,7 @@ app.post("/update_product", async (req, res) => {
     { name: req.body.newName },
     { new: true }
   );
-  console.log("response from collection", response);
+  console.log("response from collection: ", response);
   res.json(response);
 });
 
