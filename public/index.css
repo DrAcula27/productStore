@@ -1,31 +1,4 @@
-form {
-  display: flex;
-  justify-content: center;
-}
-
-input {
-  font-size: 24px;
-  font-family: inherit;
-  padding: 10px;
-  border: 2px solid var(--navy-blue);
-  border-radius: 5px;
-}
-
-input:invalid ~ span::after {
-  content: "✖";
-  color: var(--navy-blue);
-  font-size: 24px;
-  padding-left: 5px;
-}
-
-input:valid ~ span::after {
-  content: "✓";
-  color: var(--old-gold);
-  font-size: 24px;
-  font-weight: bold;
-  padding-left: 5px;
-}
-
+/* grid layout */
 #product-grid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -45,4 +18,16 @@ input:valid ~ span::after {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  border: 1px solid var(--navy-blue);
+  border-radius: 50%;
+}
+
+img:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 2px rgba(0, 48, 87, 0.4);
 }

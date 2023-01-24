@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../assets/shop.png" />
+    <title>Create Product</title>
+    <script defer src="./index.js"></script>
+    <link rel="stylesheet" href="../common.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <!--font-awesome import for icons-->
+    <script
+      src="https://kit.fontawesome.com/940af2685d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1 id="page-title">Add a Product to the Database</h1>
+    <nav id="navbar">
+      <button type="button" id="go-home-btn">Home</button>
+      <form>
+        <div>
+          <input
+            type="search"
+            id="user-query"
+            name="user-query"
+            placeholder="Search for a Product"
+            required
+          />
+          <button id="search-btn">Search</button>
+          <span class="validity"></span>
+        </div>
+      </form>
+      <button type="button" id="shopping-cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </button>
+    </nav>
+
+    <div id="container">
+      <p id="upload-status" class="hidden"></p>
+      <div class="input-container">
+        <label for="name-input">Product Name: </label>
+        <input type="text" id="name-input" required />
+      </div>
+      <div class="input-container">
+        <label for="description-input">Description: </label>
+        <input type="text" id="description-input" required />
+      </div>
+      <div class="input-container">
+        <label for="url-input">Image URL: </label>
+        <input
+          type="text"
+          id="url-input"
+          placeholder="http://www.imageurl.com"
+          required
+        />
+      </div>
+      <div class="input-container">
+        <label for="price-input">Price: </label>
+        <input type="number" min="0" id="price-input" />
+      </div>
+      <div class="input-container">
+        <label for="inventory-input">Inventory Amount: </label>
+        <input type="number" min="0" id="inventory-input" />
+      </div>
+      <div class="input-container hidden">
+        <label for="in-stock-input">Product in stock? </label>
+        <input type="text" id="in-stock-input" value="true" readonly >
+      </div>
+      <button id="submit-button">Create Product</button>
+    </div>
+    <footer id="footer">
+      <p>
+        ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        | Crafted with <i class="fa-solid fa-heart"></i> by DrAcula27 |
+      </p>
+      <a href="https://github.com/DrAcula27" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <p>|</p>
+      <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </footer>
+  </body>
+</html>

@@ -17,7 +17,7 @@ const populateGrid = async () => {
 };
 populateGrid();
 
-// functionality to move to the create an product page
+// functionality to move to the create a product page
 let createProductBtn = document.getElementById("create-product-btn");
 
 createProductBtn.addEventListener("click", () => {

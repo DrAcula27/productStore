@@ -26,6 +26,11 @@ html {
   min-height: 100vh;
 }
 
+/* for hiding elements */
+.hidden {
+  display: none;
+}
+
 /* page layout */
 #page-title {
   text-align: center;
@@ -59,20 +64,16 @@ button:hover {
   box-shadow: 2px 2px 2px 2px rgba(0, 48, 87, 0.4);
 }
 
-/* form layout */
+/* create product form layout */
 #container {
   margin: 0 auto;
   padding: 20px;
-  max-width: 200px;
-  border: 1px solid var(--navy-blue);
+  max-width: 420px;
+  border: 2px solid var(--navy-blue);
   border-radius: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.hidden {
-  display: none;
 }
 
 .input-container {
@@ -106,10 +107,33 @@ select {
   border-radius: 5px;
 }
 
-img {
-  max-width: 150px;
-  border: 1px solid var(--navy-blue);
-  border-radius: 50%;
+/* search bar form layout */
+form {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="search"] {
+  font-size: 24px;
+  font-family: inherit;
+  padding: 10px;
+  border: 2px solid var(--navy-blue);
+  border-radius: 5px;
+}
+
+input[type="search"]:invalid ~ span::after {
+  content: "✖";
+  color: var(--navy-blue);
+  font-size: 24px;
+  padding-left: 5px;
+}
+
+input[type="search"]:valid ~ span::after {
+  content: "✓";
+  color: var(--old-gold);
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 5px;
 }
 
 /*footer*/
