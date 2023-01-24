@@ -33,6 +33,7 @@ mongoose.connection.once("open", () => {
 app.post("/create_product", async (req, res) => {
   const {
     nameString: name,
+    categoryString: category,
     descriptionString: description,
     imageURLString: imageURL,
     priceNumber: price,
@@ -42,6 +43,7 @@ app.post("/create_product", async (req, res) => {
 
   let returnedValue = await Product.create({
     name,
+    category,
     description,
     imageURL,
     price,

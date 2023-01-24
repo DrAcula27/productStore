@@ -67,7 +67,7 @@ button:hover {
 /* create product form layout */
 #container {
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   max-width: 420px;
   border: 2px solid var(--navy-blue);
   border-radius: 1em;
@@ -78,16 +78,17 @@ button:hover {
 
 .input-container {
   margin: 10px auto;
-  width: 175px;
 }
 
-.input-container > label {
+.input-container > p > label {
   color: var(--navy-blue);
   font-size: 16px;
   font-family: inherit;
 }
 
-input {
+.input-container > input,
+.input-container > textarea,
+.input-container > select {
   font-size: 14px;
   font-family: inherit;
   padding: 10px;
@@ -98,13 +99,7 @@ input {
 select {
   background-color: var(--white);
   color: var(--navy-blue);
-  width: 175px;
-  padding: 5px 15px;
-  margin: 10px auto;
-  font-size: 16px;
-  font-family: inherit;
-  border: 2px solid var(--navy-blue);
-  border-radius: 5px;
+  width: 185px;
 }
 
 /* search bar form layout */

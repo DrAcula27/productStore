@@ -36,19 +36,26 @@
         <i class="fa-solid fa-cart-shopping"></i>
       </button>
     </nav>
-
+    <!-- create a product inputs -->
     <div id="container">
       <p id="upload-status" class="hidden"></p>
+      <!-- name -->
       <div class="input-container">
-        <label for="name-input">Product Name: </label>
+        <p><label for="name-input">Product Name: </label></p>
         <input type="text" id="name-input" required />
       </div>
       <div class="input-container">
-        <label for="description-input">Description: </label>
-        <input type="text" id="description-input" required />
+        <p><label for="category-select">Please Choose a Category: </label></p>
+        <select name="category-select" id="category-select">
+          <option value="toy">Toy</option>
+          <option value="food">Food</option>
+          <option value="clothing">Clothing</option>
+          <option value="supplies">Supplies</option>
+        </select>
       </div>
+      <!-- image URL -->
       <div class="input-container">
-        <label for="url-input">Image URL: </label>
+        <p><label for="url-input">Image URL: </label></p>
         <input
           type="text"
           id="url-input"
@@ -56,18 +63,33 @@
           required
         />
       </div>
+      <!-- price -->
       <div class="input-container">
-        <label for="price-input">Price: </label>
+        <p><label for="price-input">Price: </label></p>
         <input type="number" min="0" id="price-input" />
       </div>
+      <!-- inventory -->
       <div class="input-container">
-        <label for="inventory-input">Inventory Amount: </label>
+        <p><label for="inventory-input">Inventory Amount: </label></p>
         <input type="number" min="0" id="inventory-input" />
       </div>
-      <div class="input-container hidden">
-        <label for="in-stock-input">Product in stock? </label>
-        <input type="text" id="in-stock-input" value="true" readonly >
+      <!-- description -->
+      <div class="input-container">
+        <p><label for="description-input">Description: </label></p>
+        <textarea
+          name="description-input"
+          id="description-input"
+          cols="27"
+          rows="5"
+          required
+        ></textarea>
       </div>
+      <!-- isInStock -> submitted as true when user creates a product -->
+      <div class="input-container hidden">
+        <p><label for="in-stock-input">Product in stock? </label></p>
+        <input type="text" id="in-stock-input" value="true" readonly />
+      </div>
+      <!-- submit button -->
       <button id="submit-button">Create Product</button>
     </div>
     <footer id="footer">

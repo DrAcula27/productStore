@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View A Product</title>
+    <link rel="icon" href="../assets/shop.png" />
+    <link rel="stylesheet" href="../common.css" />
+    <script src="./index.js" defer></script>
+    <!--font-awesome import for icons-->
+    <script
+      src="https://kit.fontawesome.com/940af2685d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1 id="page-title"></h1>
+    <nav id="navbar">
+      <button type="button" id="create-product-btn">Create A Product</button>
+      <form>
+        <div>
+          <input
+            type="search"
+            id="user-query"
+            name="user-query"
+            placeholder="Search for a Product"
+            required
+          />
+          <button id="search-btn">Search</button>
+          <span class="validity"></span>
+        </div>
+      </form>
+      <button type="button" id="shopping-cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </button>
+    </nav>
+    <div id="container"></div>
+    <footer id="footer">
+      <p>
+        ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        | Crafted with <i class="fa-solid fa-heart"></i> by DrAcula27 |
+      </p>
+      <a href="https://github.com/DrAcula27" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <p>|</p>
+      <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </footer>
+  </body>
+</html>
