@@ -1,0 +1,33 @@
+#popup {
+  background-color: var(--old-gold);
+  color: var(--white);
+  width: 450px;
+  padding: 30px 40px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border: 2px solid var(--navy-blue);
+  border-radius: 8px;
+  display: none;
+  text-align: center;
+}
+
+#popup button {
+  display: block;
+  margin: 0 0 0 auto;
+  background-color: transparent;
+  font-size: 30px;
+  color: var(--navy-blue);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#popup p {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  margin: 20px 0;
+  line-height: 25px;
+}

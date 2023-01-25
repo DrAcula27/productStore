@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../assets/shop.png" />
-    <title>Create Product</title>
+    <title>Update Product</title>
     <script defer src="./index.js"></script>
     <link rel="stylesheet" href="../common.css" />
     <link rel="stylesheet" href="./index.css" />
@@ -21,7 +21,7 @@
       <!-- all page content except <footer> -->
       <div id="content-wrap">
         <h1 id="page-title">
-          Now Editing... <span id="product-name-title"></span>
+          Now Updating... <span id="product-name-title"></span>
         </h1>
         <nav id="navbar">
           <button type="button" id="go-home-btn">Home</button>
@@ -43,7 +43,22 @@
           </button>
         </nav>
         <div id="error-msg-container" class="hidden"></div>
-        <!-- create a product inputs -->
+        <div id="popup">
+          <button id="close">&times;</button>
+          <h3>Welcome to the Update Product Page!</h3>
+          <p>
+            To update this product, change whichever fields you would like to have
+            updated, then click the "Update Product" button. Everything else
+            will remain the same as before!
+            <br />
+            <br />
+            For example:
+            <br />
+            If you only want to update the name of the product, type a new name
+            in the "Product Name" field and click "Update Product". That's it!
+          </p>
+        </div>
+        <!-- update a product inputs -->
         <div id="container">
           <p id="upload-status" class="hidden"></p>
           <!-- name -->
