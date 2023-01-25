@@ -37,7 +37,7 @@ createProductBtn.addEventListener("click", () => {
   window.location.href = "./create_products";
 });
 
-// functionality to search for a product
+// functionality to search for a product using the search bar
 let searchBtn = document.getElementById("search-btn");
 let errorMsgDiv = document.getElementById("error-msg-container");
 
@@ -66,7 +66,7 @@ searchBtn.addEventListener("click", async (event) => {
     } catch (error) {}
   }
 });
-
+// to re-hide the error message container when the user starts typing in the search bar
 let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("keydown", () => {
   errorMsgDiv.classList.add("hidden");

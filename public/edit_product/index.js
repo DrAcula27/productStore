@@ -1,4 +1,8 @@
-// functionality to add a product to the database
+// to dynamically update page title
+let titleSpan = document.getElementById("product-name-title");
+titleSpan.textContent = `product name`;
+
+// functionality to update a product in the database
 let submitButton = document.getElementById("submit-button");
 
 submitButton.addEventListener("click", async () => {
@@ -21,8 +25,8 @@ submitButton.addEventListener("click", async () => {
     isInStockBoolean,
   };
 
-  let response = await fetch("http://localhost:5000/create_product", {
-    method: "POST",
+  let response = await fetch("http://localhost:5000/update_product", {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
@@ -33,12 +37,12 @@ submitButton.addEventListener("click", async () => {
   if (response.status === 200) {
     console.log(`${response.status} - Great Success!`);
     uploadStatusTag.classList.remove("hidden");
-    uploadStatusTag.textContent = "Upload Completed!";
+    uploadStatusTag.textContent = "Update Completed!";
     uploadStatusTag.style.color = "green";
   } else {
     console.log(response);
     uploadStatusTag.classList.remove("hidden");
-    uploadStatusTag.textContent = "Upload Failed :(";
+    uploadStatusTag.textContent = "Update Failed :(";
     uploadStatusTag.style.color = "red";
   }
 });

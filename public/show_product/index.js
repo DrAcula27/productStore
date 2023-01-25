@@ -13,7 +13,6 @@ const populateProductContainer = async () => {
 
   data.json().then((parsedData) => {
     parsedData.forEach((object) => {
-      console.log(parsedData);
       let divTag = document.createElement("div");
       divTag.classList.add("data-container");
 
@@ -48,7 +47,7 @@ homeBtn.addEventListener("click", () => {
   window.location.href = "../index.html";
 });
 
-// functionality to search for a product
+// functionality to search for a product using the search bar
 let searchBtn = document.getElementById("search-btn");
 let errorMsgDiv = document.getElementById("error-msg-container");
 
@@ -77,17 +76,24 @@ searchBtn.addEventListener("click", async (event) => {
     } catch (error) {}
   }
 });
-
+// to re-hide the error message container when the user starts typing in the search bar
 let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("keydown", () => {
   errorMsgDiv.classList.add("hidden");
 });
+
+// functionality to view shopping cart
 
 // functionality to buy one of the product
 
 // functionality to add one of the product to the user's cart
 
 // functionality to edit the product
+let editBtn = document.getElementById("edit-btn");
+
+editBtn.addEventListener("click", () => {
+  window.location.href = "../edit_product";
+});
 
 // functionality to delete the product from the database
 let deleteBtn = document.getElementById("delete-btn");
@@ -99,6 +105,6 @@ deleteBtn.addEventListener("click", async () => {
       method: "delete",
     }
   );
-
   window.location.href = "../index.html";
+  console.log(response);
 });
