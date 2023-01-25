@@ -1,11 +1,66 @@
-// to dynamically update page title
-let titleSpan = document.getElementById("product-name-title");
-titleSpan.textContent = `product name`;
+// populate page with product data
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+let productIdFromURL = params.clickedProductId;
+
+let productContainer = document.getElementById("container");
+
+const fillCurrentProductData = async () => {
+  let data = await fetch(
+    `http://localhost:5000/get_specific_product/${productIdFromURL}`
+  );
+
+  data.json().then((parsedData) => {
+    parsedData.forEach((object) => {
+      // dynamically update page title
+      let titleSpan = document.getElementById("product-name-title");
+      titleSpan.textContent = `${object.name}`;
+
+      // prefill input fields with current product data
+      let nameInput = document.getElementById("name-input");
+      nameInput.value = `${object.name}`;
+
+      let categorySelect = document.getElementById("category-select");
+      categorySelect.value = `${object.category}`;
+
+      let urlInput = document.getElementById("url-input");
+      urlInput.value = `${object.imageURL}`;
+
+      let priceInput = document.getElementById("price-input");
+      priceInput.value = `${object.price}`;
+
+      let inventoryInput = document.getElementById("inventory-input");
+      inventoryInput.value = `${object.inventory}`;
+
+      let descriptionInput = document.getElementById("description-input");
+      descriptionInput.value = `${object.description}`;
+
+      let inStockSelect = document.getElementById("in-stock-select");
+      inStockSelect.value = `${object.isInStock}`;
+    });
+  });
+};
+fillCurrentProductData();
+
+// open popup 0.25 seconds after page load
+window.addEventListener("load", () => {
+  setTimeout(
+    (open = () => {
+      document.querySelector("#popup").style.display = "block";
+    }),
+    250
+  );
+});
+
+document.querySelector("#close").addEventListener("click", () => {
+  document.querySelector("#popup").style.display = "none";
+});
 
 // functionality to update a product in the database
-let submitButton = document.getElementById("submit-button");
+let updateButton = document.getElementById("update-button");
 
-submitButton.addEventListener("click", async () => {
+updateButton.addEventListener("click", async () => {
   let nameString = document.getElementById("name-input").value;
   let categoryString = document.getElementById("category-select").value;
   let descriptionString = document.getElementById("description-input").value;
@@ -13,9 +68,9 @@ submitButton.addEventListener("click", async () => {
   let priceNumber = +document.getElementById("price-input").value;
   let inventoryNumber = +document.getElementById("inventory-input").value;
   let isInStockBoolean =
-    document.getElementById("in-stock-input").value === "true" ? true : false;
+    document.getElementById("in-stock-select").value === "true" ? true : false;
 
-  const product = {
+  const updatedProduct = {
     nameString,
     categoryString,
     descriptionString,
@@ -25,13 +80,16 @@ submitButton.addEventListener("click", async () => {
     isInStockBoolean,
   };
 
-  let response = await fetch("http://localhost:5000/update_product", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
+  let response = await fetch(
+    `http://localhost:5000/update_product/${productIdFromURL}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedProduct),
+    }
+  );
 
   let uploadStatusTag = document.getElementById("upload-status");
   if (response.status === 200) {
@@ -45,6 +103,9 @@ submitButton.addEventListener("click", async () => {
     uploadStatusTag.textContent = "Update Failed :(";
     uploadStatusTag.style.color = "red";
   }
+
+  let finalData = await response.json();
+  console.log(finalData);
 });
 
 // functionality to return to the home page
@@ -90,14 +151,3 @@ searchBar.addEventListener("keydown", () => {
 });
 
 // functionality to view shopping cart
-
-// functionality to open popup 0.25 seconds after page load
-window.addEventListener("load", function () {
-  setTimeout(function open() {
-    document.querySelector("#popup").style.display = "block";
-  }, 250);
-});
-
-document.querySelector("#close").addEventListener("click", function () {
-  document.querySelector("#popup").style.display = "none";
-});

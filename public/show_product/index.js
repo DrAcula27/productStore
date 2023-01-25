@@ -88,11 +88,11 @@ searchBar.addEventListener("keydown", () => {
 
 // functionality to add one of the product to the user's cart
 
-// functionality to edit the product
+// functionality to move to the update product page
 let editBtn = document.getElementById("edit-btn");
 
 editBtn.addEventListener("click", () => {
-  window.location.href = "../edit_product";
+  window.location.href = `../edit_product?clickedProductId=${productIdFromURL}`;
 });
 
 // functionality to delete the product from the database

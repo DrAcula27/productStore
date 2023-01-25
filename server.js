@@ -83,7 +83,7 @@ app.get("/search/:product_name", async (req, res) => {
   let regex = new RegExp(["^", productToShow, "$"].join(""), "i");
 
   let productRes = await Product.find({ name: regex });
-  
+
   if (productRes.length < 1) {
     res.json("This product is not in the database.");
   } else {
@@ -91,11 +91,21 @@ app.get("/search/:product_name", async (req, res) => {
   }
 });
 
-// '/update_product' -> use information from req.body to update the specific product
-app.post("/update_product", async (req, res) => {
+// '/update_product/:product_id' -> use information from req.body to update the specific product
+app.post("/update_product/:product_id", async (req, res) => {
+
+  let product_id = req.params.product_id;
   let response = await Product.findByIdAndUpdate(
-    req.body.id,
-    { name: req.body.newName },
+    { _id: product_id },
+    {
+      name: req.body.nameString,
+      category: req.body.categoryString,
+      description: req.body.descriptionString,
+      imageURL: req.body.imageURLString,
+      price: req.body.priceNumber,
+      inventory: req.body.inventoryNumber,
+      isInStock: req.body.isInStockBoolean,
+    },
     { new: true }
   );
   console.log("response from collection: ", response);
@@ -110,15 +120,6 @@ app.delete("/delete_product", async (req, res) => {
   let productResponse = await Product.deleteOne({ _id: productID });
 
   res.send({ data: `deleted ${productResponse}.` });
-});
-
-// '/view_shopping_cart' -> view all items on which the user has clicked the "BUY" button
-app.get("/view_shopping_cart", async (req, res) => {
-  let response = await Product.find({});
-
-  console.log(response);
-
-  res.json(response);
 });
 
 // PORT -> tell server where to listen
