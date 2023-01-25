@@ -16,99 +16,107 @@
     ></script>
   </head>
   <body>
-    <h1 id="page-title">Add a Product to the Database</h1>
-    <nav id="navbar">
-      <button type="button" id="go-home-btn">Home</button>
-      <form>
-        <div>
-          <input
-            type="search"
-            id="user-query"
-            name="user-query"
-            placeholder="Search for a Product"
-            required
-          />
-          <button id="search-btn">Search</button>
-          <span class="validity"></span>
+    <!-- all content between the <body> tags -->
+    <div id="page-container">
+      <!-- all page content except <footer> -->
+      <div id="content-wrap">
+        <h1 id="page-title">Add a Product to the Database</h1>
+        <nav id="navbar">
+          <button type="button" id="go-home-btn">Home</button>
+          <form>
+            <div>
+              <input
+                type="search"
+                id="user-query"
+                name="user-query"
+                placeholder="Search for a Product"
+                required
+              />
+              <button id="search-btn">Search</button>
+              <span class="validity"></span>
+            </div>
+          </form>
+          <button type="button" id="shopping-cart-btn">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+        </nav>
+        <div id="error-msg-container" class="hidden"></div>
+        <!-- create a product inputs -->
+        <div id="container">
+          <p id="upload-status" class="hidden"></p>
+          <!-- name -->
+          <div class="input-container">
+            <p><label for="name-input">Product Name: </label></p>
+            <input type="text" id="name-input" required />
+          </div>
+          <!-- category -->
+          <div class="input-container">
+            <p>
+              <label for="category-select">Please Choose a Category: </label>
+            </p>
+            <select name="category-select" id="category-select">
+              <option value="toy">Toy</option>
+              <option value="food">Food</option>
+              <option value="clothing">Clothing</option>
+              <option value="supplies">Supplies</option>
+            </select>
+          </div>
+          <!-- image URL -->
+          <div class="input-container">
+            <p><label for="url-input">Image URL: </label></p>
+            <input
+              type="text"
+              id="url-input"
+              placeholder="http://www.imageurl.com"
+              required
+            />
+          </div>
+          <!-- price -->
+          <div class="input-container">
+            <p><label for="price-input">Price: </label></p>
+            <input type="number" min="0" id="price-input" />
+          </div>
+          <!-- inventory -->
+          <div class="input-container">
+            <p><label for="inventory-input">Inventory Amount: </label></p>
+            <input type="number" min="0" id="inventory-input" />
+          </div>
+          <!-- description -->
+          <div class="input-container">
+            <p><label for="description-input">Description: </label></p>
+            <textarea
+              name="description-input"
+              id="description-input"
+              cols="27"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <!-- isInStock -> submitted as true when user creates a product -->
+          <div class="input-container hidden">
+            <p><label for="in-stock-input">Product in stock? </label></p>
+            <input type="text" id="in-stock-input" value="true" readonly />
+          </div>
+          <!-- submit button -->
+          <button id="submit-button">Create Product</button>
         </div>
-      </form>
-      <button type="button" id="shopping-cart-btn">
-        <i class="fa-solid fa-cart-shopping"></i>
-      </button>
-    </nav>
-    <div id="error-msg-container" class="hidden"></div>
-    <!-- create a product inputs -->
-    <div id="container">
-      <p id="upload-status" class="hidden"></p>
-      <!-- name -->
-      <div class="input-container">
-        <p><label for="name-input">Product Name: </label></p>
-        <input type="text" id="name-input" required />
       </div>
-      <!-- category -->
-      <div class="input-container">
-        <p><label for="category-select">Please Choose a Category: </label></p>
-        <select name="category-select" id="category-select">
-          <option value="toy">Toy</option>
-          <option value="food">Food</option>
-          <option value="clothing">Clothing</option>
-          <option value="supplies">Supplies</option>
-        </select>
-      </div>
-      <!-- image URL -->
-      <div class="input-container">
-        <p><label for="url-input">Image URL: </label></p>
-        <input
-          type="text"
-          id="url-input"
-          placeholder="http://www.imageurl.com"
-          required
-        />
-      </div>
-      <!-- price -->
-      <div class="input-container">
-        <p><label for="price-input">Price: </label></p>
-        <input type="number" min="0" id="price-input" />
-      </div>
-      <!-- inventory -->
-      <div class="input-container">
-        <p><label for="inventory-input">Inventory Amount: </label></p>
-        <input type="number" min="0" id="inventory-input" />
-      </div>
-      <!-- description -->
-      <div class="input-container">
-        <p><label for="description-input">Description: </label></p>
-        <textarea
-          name="description-input"
-          id="description-input"
-          cols="27"
-          rows="5"
-          required
-        ></textarea>
-      </div>
-      <!-- isInStock -> submitted as true when user creates a product -->
-      <div class="input-container hidden">
-        <p><label for="in-stock-input">Product in stock? </label></p>
-        <input type="text" id="in-stock-input" value="true" readonly />
-      </div>
-      <!-- submit button -->
-      <button id="submit-button">Create Product</button>
+      <footer id="footer">
+        <p>
+          ©
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          | Crafted with <i class="fa-solid fa-heart"></i> by DrAcula27 |
+        </p>
+        <a href="https://github.com/DrAcula27" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <p>|</p>
+        <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </footer>
     </div>
-    <footer id="footer">
-      <p>
-        ©
-        <script>
-          document.write(new Date().getFullYear());
-        </script>
-        | Crafted with <i class="fa-solid fa-heart"></i> by DrAcula27 |
-      </p>
-      <a href="https://github.com/DrAcula27" target="_blank">
-        <i class="fa-brands fa-github"></i>
-      </a>
-      <p>|</p>
-      <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
-    </footer>
   </body>
 </html>

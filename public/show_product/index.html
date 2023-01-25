@@ -16,53 +16,59 @@
     ></script>
   </head>
   <body>
-    <h1 id="page-title">Now Viewing...</h1>
-    <nav id="navbar">
-      <button type="button" id="go-home-btn">Home</button>
-      <form>
-        <div>
-          <input
-            type="search"
-            id="user-query"
-            name="user-query"
-            placeholder="Search for a Product"
-            required
-          />
-          <button id="search-btn">Search</button>
-          <span class="validity"></span>
+    <!-- all content between the <body> tags -->
+    <div id="page-container">
+      <!-- all page content except <footer> -->
+      <div id="content-wrap">
+        <h1 id="page-title">Now Viewing...</h1>
+        <nav id="navbar">
+          <button type="button" id="go-home-btn">Home</button>
+          <form>
+            <div>
+              <input
+                type="search"
+                id="user-query"
+                name="user-query"
+                placeholder="Search for a Product"
+                required
+              />
+              <button id="search-btn">Search</button>
+              <span class="validity"></span>
+            </div>
+          </form>
+          <button type="button" id="shopping-cart-btn">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+        </nav>
+        <div id="error-msg-container" class="hidden"></div>
+        <div id="container">
+          <p>
+            <button id="buy-btn">Buy Now</button>
+            or
+            <button id="add-to-cart-btn">Add to Cart</button>
+          </p>
+          <button id="edit-btn">Edit this Product</button>
+          <button id="delete-btn" title="this is permanent!">
+            <i class="fa-solid fa-trash"></i> DELETE
+          </button>
         </div>
-      </form>
-      <button type="button" id="shopping-cart-btn">
-        <i class="fa-solid fa-cart-shopping"></i>
-      </button>
-    </nav>
-    <div id="error-msg-container" class="hidden"></div>
-    <div id="container">
-      <p>
-        <button id="buy-btn">Buy Now</button>
-        or
-        <button id="add-to-cart-btn">Add to Cart</button>
-      </p>
-      <button id="edit-btn">Edit this Product</button>
-      <button id="delete-btn" title="this is permanent!">
-        <i class="fa-solid fa-trash"></i> DELETE
-      </button>
+      </div>
+      <footer id="footer">
+        <p>
+          ©
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          | Crafted with <i class="fa-solid fa-heart"></i> by DrAcula27 |
+        </p>
+        <a href="https://github.com/DrAcula27" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <p>|</p>
+        <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </footer>
     </div>
-    <footer id="footer">
-      <p>
-        ©
-        <script>
-          document.write(new Date().getFullYear());
-        </script>
-        | Crafted with <i class="fa-solid fa-heart"></i> by DrAcula27 |
-      </p>
-      <a href="https://github.com/DrAcula27" target="_blank">
-        <i class="fa-brands fa-github"></i>
-      </a>
-      <p>|</p>
-      <a href="https://www.linkedin.com/in/daniellerandrews/" target="_blank">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
-    </footer>
   </body>
 </html>
