@@ -39,7 +39,7 @@
         </nav>
         <div id="error-msg-container" class="hidden"></div>
         <!-- create a product inputs -->
-        <div id="container">
+        <form id="container">
           <p id="upload-status" class="hidden"></p>
           <!-- name -->
           <div class="input-container">
@@ -62,7 +62,7 @@
           <div class="input-container">
             <p><label for="url-input">Image URL: </label></p>
             <input
-              type="text"
+              type="url"
               id="url-input"
               placeholder="http://www.imageurl.com"
               required
@@ -92,11 +92,11 @@
           <!-- isInStock -> submitted as true when user creates a product -->
           <div class="input-container hidden">
             <p><label for="in-stock-input">Product in stock? </label></p>
-            <input type="text" id="in-stock-input" value="yes" readonly />
+            <input type="text" id="in-stock-input" value="true" readonly />
           </div>
           <!-- submit button -->
           <button id="submit-button">Create Product</button>
-        </div>
+        </form>
       </div>
       <footer id="footer">
         <p>

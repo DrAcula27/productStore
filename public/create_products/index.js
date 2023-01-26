@@ -1,7 +1,9 @@
 // functionality to add a product to the database
-let submitButton = document.getElementById("submit-button");
+let formSubmit = document.getElementById("container");
 
-submitButton.addEventListener("click", async () => {
+formSubmit.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
   let nameString = document.getElementById("name-input").value;
   let categoryString = document.getElementById("category-select").value;
   let descriptionString = document.getElementById("description-input").value;
@@ -9,7 +11,7 @@ submitButton.addEventListener("click", async () => {
   let priceNumber = +document.getElementById("price-input").value;
   let inventoryNumber = +document.getElementById("inventory-input").value;
   let isInStockBoolean =
-    document.getElementById("in-stock-input").value === "yes" ? true : false;
+    document.getElementById("in-stock-input").value === "true" ? true : false;
 
   const product = {
     nameString,
@@ -21,29 +23,33 @@ submitButton.addEventListener("click", async () => {
     isInStockBoolean,
   };
 
-  let response = await fetch("http://localhost:5000/create_product", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(product),
-  });
+  try {
+    let response = await fetch("http://localhost:5000/create_product", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    });
 
-  let uploadStatusTag = document.getElementById("upload-status");
-  if (response.status === 200) {
-    console.log(`${response.status} - Great Success!`);
-    uploadStatusTag.classList.remove("hidden");
-    uploadStatusTag.textContent = "Creation Completed!";
-    uploadStatusTag.style.fontWeight = "bold";
-    uploadStatusTag.style.color = "green";
-    window.scrollTo(0, 0);
-  } else {
-    console.log(response);
-    uploadStatusTag.classList.remove("hidden");
-    uploadStatusTag.textContent = "Creation Failed :(";
-    uploadStatusTag.style.fontWeight = "bold";
-    uploadStatusTag.style.color = "red";
-    window.scrollTo(0, 0);
+    let uploadStatusTag = document.getElementById("upload-status");
+    if (response.status === 200) {
+      console.log(`${response.status} - Great Success!`);
+      uploadStatusTag.classList.remove("hidden");
+      uploadStatusTag.textContent = "Creation Completed!";
+      uploadStatusTag.style.fontWeight = "bold";
+      uploadStatusTag.style.color = "green";
+      window.scrollTo(0, 0);
+    } else {
+      console.log(response);
+      uploadStatusTag.classList.remove("hidden");
+      uploadStatusTag.textContent = "Creation Failed :(";
+      uploadStatusTag.style.fontWeight = "bold";
+      uploadStatusTag.style.color = "red";
+      window.scrollTo(0, 0);
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 

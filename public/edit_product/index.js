@@ -58,9 +58,11 @@ document.querySelector("#close").addEventListener("click", () => {
 });
 
 // functionality to update a product in the database
-let updateButton = document.getElementById("update-button");
+let updateForm = document.getElementById("container");
 
-updateButton.addEventListener("click", async () => {
+updateForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  
   let nameString = document.getElementById("name-input").value;
   let categoryString = document.getElementById("category-select").value;
   let descriptionString = document.getElementById("description-input").value;
@@ -68,7 +70,7 @@ updateButton.addEventListener("click", async () => {
   let priceNumber = +document.getElementById("price-input").value;
   let inventoryNumber = +document.getElementById("inventory-input").value;
   let isInStockBoolean =
-    document.getElementById("in-stock-select").value === "yes" ? true : false;
+    document.getElementById("in-stock-select").value === "true" ? true : false;
 
   const updatedProduct = {
     nameString,

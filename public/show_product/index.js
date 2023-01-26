@@ -65,13 +65,15 @@ const populateProductContainer = async () => {
       } else {
         // add event listener to buy button
         buyBtn.addEventListener("click", async () => {
-          buyBtn.setAttribute("disabled", false);
-          buyBtn.classList.remove("disabledBtn");
-
           let inventoryNumber = object.inventory - 1;
           let isInStockBoolean = object.isInStock;
 
-          let buyOne = await fetch(`/buy_product/${productIdFromURL}`, {
+          if (inventoryNumber <= 0) {
+            inventoryNumber = 0;
+            isInStockBoolean = false;
+          }
+
+          let boughtOne = await fetch(`/buy_product/${productIdFromURL}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -80,18 +82,13 @@ const populateProductContainer = async () => {
             }),
           });
 
-          buyOne.json().then((parsed) => {
-
+          boughtOne.json().then((parsed) => {
             console.log(parsed);
 
             let newInventory = parsed.inventory;
-            let newInStockBool = parsed.isInStock;
-
-            console.log(newInStockBool);
 
             if (newInventory <= 0) {
               newInventory = 0;
-              isInStockBoolean = false;
               inventorySpan.textContent = "";
               inventoryP.textContent = "OUT OF STOCK";
               inventoryP.classList.add("out-of-stock");
@@ -106,7 +103,6 @@ const populateProductContainer = async () => {
           });
         });
       }
-      // functionality to add one of the product to the user's cart
     });
   });
 };
@@ -154,8 +150,6 @@ searchBar.addEventListener("input", () => {
   errorMsgH2.classList.add("hidden");
 });
 
-// functionality to view shopping cart
-
 // functionality to move to the update product page
 let editBtn = document.getElementById("edit-btn");
 
@@ -175,4 +169,10 @@ deleteBtn.addEventListener("click", async () => {
   );
   window.location.href = "../index.html";
   console.log(response);
+});
+
+// test event listener
+let buyBtn = document.getElementById("buy-btn");
+buyBtn.addEventListener("click", () => {
+  console.log("clicked buy now");
 });

@@ -56,7 +56,7 @@
           </p>
         </div>
         <!-- update a product inputs -->
-        <div id="container">
+        <form id="container">
           <p id="upload-status" class="hidden"></p>
           <!-- name -->
           <div class="input-container">
@@ -79,7 +79,7 @@
           <div class="input-container">
             <p><label for="url-input">Image URL: </label></p>
             <input
-              type="text"
+              type="url"
               id="url-input"
               placeholder="http://www.imageurl.com"
               required
@@ -110,13 +110,13 @@
           <div class="input-container">
             <p><label for="in-stock-select">Product in stock? </label></p>
             <select name="in-stock-select" id="in-stock-select">
-              <option value="yes" selected>yes</option>
-              <option value="no">no</option>
+              <option value="true" selected>Yes</option>
+              <option value="false">No</option>
             </select>
           </div>
           <!-- update button -->
           <button id="update-button">Update Product</button>
-        </div>
+        </form>
       </div>
       <footer id="footer">
         <p>
