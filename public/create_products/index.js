@@ -9,7 +9,7 @@ submitButton.addEventListener("click", async () => {
   let priceNumber = +document.getElementById("price-input").value;
   let inventoryNumber = +document.getElementById("inventory-input").value;
   let isInStockBoolean =
-    document.getElementById("in-stock-input").value === "true" ? true : false;
+    document.getElementById("in-stock-input").value === "yes" ? true : false;
 
   const product = {
     nameString,
@@ -33,13 +33,17 @@ submitButton.addEventListener("click", async () => {
   if (response.status === 200) {
     console.log(`${response.status} - Great Success!`);
     uploadStatusTag.classList.remove("hidden");
-    uploadStatusTag.textContent = "Upload Completed!";
+    uploadStatusTag.textContent = "Creation Completed!";
+    uploadStatusTag.style.fontWeight = "bold";
     uploadStatusTag.style.color = "green";
+    window.scrollTo(0, 0);
   } else {
     console.log(response);
     uploadStatusTag.classList.remove("hidden");
-    uploadStatusTag.textContent = "Upload Failed :(";
+    uploadStatusTag.textContent = "Creation Failed :(";
+    uploadStatusTag.style.fontWeight = "bold";
     uploadStatusTag.style.color = "red";
+    window.scrollTo(0, 0);
   }
 });
 
@@ -84,5 +88,3 @@ let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("input", () => {
   errorMsgDiv.classList.add("hidden");
 });
-
-// functionality to view shopping cart

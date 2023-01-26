@@ -1,9 +1,10 @@
-// populate page with product data
+// grab product id from url
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 let productIdFromURL = params.clickedProductId;
 
+// populate page with product data
 let productContainer = document.getElementById("container");
 
 const populateProductContainer = async () => {
@@ -16,25 +17,96 @@ const populateProductContainer = async () => {
       let divTag = document.createElement("div");
       divTag.classList.add("data-container");
 
-      divTag.innerHTML = `
-          <h2>${object.name}</h2>
+      let objectTitle = document.createElement("h2");
+      objectTitle.textContent = `${object.name}`;
+      divTag.append(objectTitle);
 
-          <img
-            src="${object.imageURL}"
-            alt="${object.name}"
-            title="${object.name}"
-          />
-          
-          <p>Category: ${object.category}</p>
+      let objectImage = document.createElement("img");
+      objectImage.src = `${object.imageURL}`;
+      objectImage.alt = `${object.name}`;
+      objectImage.title = `${object.name}`;
+      divTag.append(objectImage);
 
-          <p>${object.description}</p>
+      let objectCategory = document.createElement("p");
+      objectCategory.textContent = `Category: ${object.category}`;
+      divTag.append(objectCategory);
 
-          <p>Price: $${object.price}</p>
+      let objectDescription = document.createElement("p");
+      objectDescription.textContent = `${object.description}`;
+      divTag.append(objectDescription);
 
-          <p>${object.inventory} in stock</p>
-        `;
+      let objectPrice = document.createElement("p");
+      objectPrice.textContent = `Price: $${object.price}`;
+      divTag.append(objectPrice);
+
+      let objectInventory = document.createElement("p");
+      objectInventory.id = "inventory-p";
+      let objectInventoryAmt = document.createElement("span");
+      objectInventoryAmt.id = "inventory-span";
+      objectInventoryAmt.textContent = `${object.inventory}`;
+      objectInventory.append(objectInventoryAmt);
+      objectInventory.append(" in stock");
+      divTag.append(objectInventory);
 
       productContainer.prepend(divTag);
+
+      // functionality to buy one of the product
+      let buyBtn = document.getElementById("buy-btn");
+      let inventoryP = document.getElementById("inventory-p");
+      let inventorySpan = document.getElementById("inventory-span");
+
+      // check if product is out of stock
+      if (inventorySpan.innerText <= "0") {
+        inventorySpan.innerText = "";
+        inventoryP.innerText = "OUT OF STOCK";
+        inventoryP.classList.add("out-of-stock");
+        buyBtn.setAttribute("disabled", true);
+        buyBtn.classList.add("disabledBtn");
+      } else {
+        // add event listener to buy button
+        buyBtn.addEventListener("click", async () => {
+          buyBtn.setAttribute("disabled", false);
+          buyBtn.classList.remove("disabledBtn");
+
+          let inventoryNumber = object.inventory - 1;
+          let isInStockBoolean = object.isInStock;
+
+          let buyOne = await fetch(`/buy_product/${productIdFromURL}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              inventoryNumber,
+              isInStockBoolean,
+            }),
+          });
+
+          buyOne.json().then((parsed) => {
+
+            console.log(parsed);
+
+            let newInventory = parsed.inventory;
+            let newInStockBool = parsed.isInStock;
+
+            console.log(newInStockBool);
+
+            if (newInventory <= 0) {
+              newInventory = 0;
+              isInStockBoolean = false;
+              inventorySpan.textContent = "";
+              inventoryP.textContent = "OUT OF STOCK";
+              inventoryP.classList.add("out-of-stock");
+              buyBtn.setAttribute("disabled", true);
+              buyBtn.classList.add("disabledBtn");
+            } else {
+              inventorySpan.textContent = `${newInventory}`;
+              inventoryP.classList.remove("out-of-stock");
+              buyBtn.setAttribute("disabled", false);
+              buyBtn.classList.remove("disabledBtn");
+            }
+          });
+        });
+      }
+      // functionality to add one of the product to the user's cart
     });
   });
 };
@@ -49,17 +121,17 @@ homeBtn.addEventListener("click", () => {
 
 // functionality to search for a product using the search bar
 let searchBtn = document.getElementById("search-btn");
-let errorMsgDiv = document.getElementById("error-msg-container");
+let errorMsgH2 = document.getElementById("error-msg-container");
 
 searchBtn.addEventListener("click", async (event) => {
   event.preventDefault();
   let userQuery = document.getElementById("user-query").value;
 
   if (userQuery === "") {
-    errorMsgDiv.classList.remove("hidden");
-    errorMsgDiv.style.color = "red";
-    errorMsgDiv.innerHTML =
-      "<h2>Please type the name of a product in the search bar before clicking the search button!</h2>";
+    errorMsgH2.classList.remove("hidden");
+    errorMsgH2.style.color = "red";
+    errorMsgH2.textContent =
+      "Please type the name of a product in the search bar before clicking the search button!";
   } else {
     let res = await fetch(`http://localhost:5000/search/${userQuery}`);
     let product = await res.json();
@@ -68,10 +140,10 @@ searchBtn.addEventListener("click", async (event) => {
       if (product_id) {
         window.location.href = `../show_product?clickedProductId=${product_id}`;
       } else {
-        errorMsgDiv.classList.remove("hidden");
-        errorMsgDiv.style.color = "red";
-        errorMsgDiv.innerHTML =
-          "<h2>That product is not in the database. Please search for another product.</h2>";
+        errorMsgH2.classList.remove("hidden");
+        errorMsgH2.style.color = "red";
+        errorMsgH2.textContent =
+          "That product is not in the database. Please search for another product.";
       }
     } catch (error) {}
   }
@@ -79,14 +151,10 @@ searchBtn.addEventListener("click", async (event) => {
 // to re-hide the error message container when the user changes the input in the search bar
 let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("input", () => {
-  errorMsgDiv.classList.add("hidden");
+  errorMsgH2.classList.add("hidden");
 });
 
 // functionality to view shopping cart
-
-// functionality to buy one of the product
-
-// functionality to add one of the product to the user's cart
 
 // functionality to move to the update product page
 let editBtn = document.getElementById("edit-btn");

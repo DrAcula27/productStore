@@ -93,9 +93,7 @@ app.get("/search/:product_name", async (req, res) => {
 
 // '/update_product/:product_id' -> use information from req.body to update the specific product
 app.put("/update_product/:product_id", async (req, res) => {
-  
   let product_id = req.params.product_id;
-  console.log(product_id);
   try {
     let updatedProduct = await Product.findByIdAndUpdate(
       { _id: product_id },
@@ -112,6 +110,26 @@ app.put("/update_product/:product_id", async (req, res) => {
     );
     console.log("response from collection: ", updatedProduct);
     res.json(updatedProduct);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// '/buy_product/:product_id' -> lowers the inventory amount of a product by 1
+app.put("/buy_product/:product_id", async (req, res) => {
+  let product_id = req.params.product_id;
+  console.log(product_id);
+  try {
+    let updatedInventory = await Product.findByIdAndUpdate(
+      { _id: product_id },
+      {
+        inventory: req.body.inventoryNumber,
+        isInStock: req.body.isInStockBoolean,
+      },
+      { new: true }
+    );
+    console.log("response from collection: ", updatedInventory);
+    res.json(updatedInventory);
   } catch (error) {
     console.log(error);
   }

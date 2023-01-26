@@ -71,10 +71,3 @@ let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("input", () => {
   errorMsgDiv.classList.add("hidden");
 });
-
-// functionality to view shopping cart
-let shoppingCartBtn = document.getElementById("shopping-cart-btn");
-
-shoppingCartBtn.addEventListener("click", () => {
-  window.location.href = "./view_shopping_cart";
-});

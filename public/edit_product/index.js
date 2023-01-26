@@ -68,7 +68,7 @@ updateButton.addEventListener("click", async () => {
   let priceNumber = +document.getElementById("price-input").value;
   let inventoryNumber = +document.getElementById("inventory-input").value;
   let isInStockBoolean =
-    document.getElementById("in-stock-select").value === "true" ? true : false;
+    document.getElementById("in-stock-select").value === "yes" ? true : false;
 
   const updatedProduct = {
     nameString,
@@ -96,12 +96,16 @@ updateButton.addEventListener("click", async () => {
     console.log(`${response.status} - Great Success!`);
     uploadStatusTag.classList.remove("hidden");
     uploadStatusTag.textContent = "Update Completed!";
+    uploadStatusTag.style.fontWeight = "bold";
     uploadStatusTag.style.color = "green";
+    window.scrollTo(0, 0);
   } else {
     console.log(response);
     uploadStatusTag.classList.remove("hidden");
     uploadStatusTag.textContent = "Update Failed :(";
+    uploadStatusTag.style.fontWeight = "bold";
     uploadStatusTag.style.color = "red";
+    window.scrollTo(0, 0);
   }
 
   let finalData = await response.json();
@@ -149,5 +153,3 @@ let searchBar = document.getElementById("user-query");
 searchBar.addEventListener("input", () => {
   errorMsgDiv.classList.add("hidden");
 });
-
-// functionality to view shopping cart
