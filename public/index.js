@@ -66,9 +66,9 @@ searchBtn.addEventListener("click", async (event) => {
     } catch (error) {}
   }
 });
-// to re-hide the error message container when the user starts typing in the search bar
+// to re-hide the error message container when the user changes the input in the search bar
 let searchBar = document.getElementById("user-query");
-searchBar.addEventListener("keydown", () => {
+searchBar.addEventListener("input", () => {
   errorMsgDiv.classList.add("hidden");
 });
 
