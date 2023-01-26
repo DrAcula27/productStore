@@ -92,24 +92,29 @@ app.get("/search/:product_name", async (req, res) => {
 });
 
 // '/update_product/:product_id' -> use information from req.body to update the specific product
-app.post("/update_product/:product_id", async (req, res) => {
-
+app.put("/update_product/:product_id", async (req, res) => {
+  
   let product_id = req.params.product_id;
-  let response = await Product.findByIdAndUpdate(
-    { _id: product_id },
-    {
-      name: req.body.nameString,
-      category: req.body.categoryString,
-      description: req.body.descriptionString,
-      imageURL: req.body.imageURLString,
-      price: req.body.priceNumber,
-      inventory: req.body.inventoryNumber,
-      isInStock: req.body.isInStockBoolean,
-    },
-    { new: true }
-  );
-  console.log("response from collection: ", response);
-  res.json(response);
+  console.log(product_id);
+  try {
+    let updatedProduct = await Product.findByIdAndUpdate(
+      { _id: product_id },
+      {
+        name: req.body.nameString,
+        category: req.body.categoryString,
+        description: req.body.descriptionString,
+        imageURL: req.body.imageURLString,
+        price: req.body.priceNumber,
+        inventory: req.body.inventoryNumber,
+        isInStock: req.body.isInStockBoolean,
+      },
+      { new: true }
+    );
+    console.log("response from collection: ", updatedProduct);
+    res.json(updatedProduct);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // '/delete_product' -> delete a product using its id
