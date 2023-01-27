@@ -15,7 +15,8 @@
 </p>
 
 > Per Scholas - Week 9 - Front-end, Express, and MongoDB - MODULE 2 PROJECT: Product Store
-> This is the second major project through my Software Engineering course at Per Scholas. It simulates an online web store / inventory management system where you can view(_read_), browse, search for, _create_, _update_, buy, and _delete_ products. It combines both front-end (`HTML`, `CSS`, `JavaScript`) and back-end (`Node.js`, `Express.js`, `MongoDB`, `Mongoose`) technologies.
+
+> This is the second major project through my Software Engineering course at Per Scholas. It simulates an online web store / inventory management system where you can view(**read**), browse, search for, **create**, **update**, buy, and **delete** products. It combines both front-end (`HTML`, `CSS`, `JavaScript`) and back-end (`Node.js`, `Express.js`, `MongoDB`, `Mongoose`) technologies.
 
 ## Demo
 
