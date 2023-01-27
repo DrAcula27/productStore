@@ -7,6 +7,8 @@ let productIdFromURL = params.clickedProductId;
 // populate page with product data
 let productContainer = document.getElementById("container");
 
+let globalScopedData;
+
 const populateProductContainer = async () => {
   let data = await fetch(
     `http://localhost:5000/get_specific_product/${productIdFromURL}`
@@ -14,6 +16,8 @@ const populateProductContainer = async () => {
 
   data.json().then((parsedData) => {
     parsedData.forEach((object) => {
+      globalScopedData = object;
+
       let divTag = document.createElement("div");
       divTag.classList.add("data-container");
 
@@ -49,64 +53,62 @@ const populateProductContainer = async () => {
       divTag.append(objectInventory);
 
       productContainer.prepend(divTag);
-
-      // functionality to buy one of the product
-      let buyBtn = document.getElementById("buy-btn");
-      let inventoryP = document.getElementById("inventory-p");
-      let inventorySpan = document.getElementById("inventory-span");
-
-      // check if product is out of stock
-      if (inventorySpan.innerText <= "0") {
-        inventorySpan.innerText = "";
-        inventoryP.innerText = "OUT OF STOCK";
-        inventoryP.classList.add("out-of-stock");
-        buyBtn.setAttribute("disabled", true);
-        buyBtn.classList.add("disabledBtn");
-      } else {
-        // add event listener to buy button
-        buyBtn.addEventListener("click", async () => {
-          let inventoryNumber = object.inventory - 1;
-          let isInStockBoolean = object.isInStock;
-
-          if (inventoryNumber <= 0) {
-            inventoryNumber = 0;
-            isInStockBoolean = false;
-          }
-
-          let boughtOne = await fetch(`/buy_product/${productIdFromURL}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              inventoryNumber,
-              isInStockBoolean,
-            }),
-          });
-
-          boughtOne.json().then((parsed) => {
-            console.log(parsed);
-
-            let newInventory = parsed.inventory;
-
-            if (newInventory <= 0) {
-              newInventory = 0;
-              inventorySpan.textContent = "";
-              inventoryP.textContent = "OUT OF STOCK";
-              inventoryP.classList.add("out-of-stock");
-              buyBtn.setAttribute("disabled", true);
-              buyBtn.classList.add("disabledBtn");
-            } else {
-              inventorySpan.textContent = `${newInventory}`;
-              inventoryP.classList.remove("out-of-stock");
-              buyBtn.setAttribute("disabled", false);
-              buyBtn.classList.remove("disabledBtn");
-            }
-          });
-        });
-      }
     });
   });
 };
 populateProductContainer();
+
+// functionality to buy one of the product
+setTimeout(() => {
+  let buyBtn = document.getElementById("buy-btn");
+  let inventoryP = document.getElementById("inventory-p");
+  let inventorySpan = document.getElementById("inventory-span");
+
+  // check if product is out of stock
+  if (inventorySpan.innerText <= "0") {
+    inventorySpan.innerText = "";
+    inventoryP.innerText = "OUT OF STOCK";
+    inventoryP.classList.add("out-of-stock");
+    buyBtn.classList.add("hidden");
+  } else {
+    // add event listener to buy button
+    buyBtn.addEventListener("click", async () => {
+      let inventoryNumber = +inventorySpan.textContent - 1;
+      let isInStockBoolean = globalScopedData.isInStock;
+
+      if (inventoryNumber <= 0) {
+        inventoryNumber = 0;
+        isInStockBoolean = false;
+      }
+
+      let boughtOne = await fetch(`/buy_product/${productIdFromURL}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          inventoryNumber,
+          isInStockBoolean,
+        }),
+      });
+
+      boughtOne.json().then((parsed) => {
+        let newInventory = parsed.inventory;
+
+        if (newInventory <= 0) {
+          newInventory = 0;
+          inventorySpan.textContent = "";
+          inventoryP.textContent = "OUT OF STOCK";
+          inventoryP.classList.add("out-of-stock");
+          buyBtn.classList.add("hidden");
+        } else {
+          inventorySpan.textContent = `${newInventory}`;
+          inventoryP.classList.remove("out-of-stock");
+          buyBtn.classList.remove("hidden");
+        }
+      });
+      // location.reload();
+    });
+  }
+}, 500);
 
 // functionality to return to the home page
 let homeBtn = document.getElementById("go-home-btn");
@@ -169,10 +171,4 @@ deleteBtn.addEventListener("click", async () => {
   );
   window.location.href = "../index.html";
   console.log(response);
-});
-
-// test event listener
-let buyBtn = document.getElementById("buy-btn");
-buyBtn.addEventListener("click", () => {
-  console.log("clicked buy now");
 });

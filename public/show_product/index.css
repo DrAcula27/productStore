@@ -35,17 +35,6 @@
   margin: 10px;
 }
 
-.disabledBtn {
-  background-color: rgb(177, 177, 177);
-  color: rgb(86, 86, 86);
-  border: 2px solid rgb(86, 86, 86);
-}
-
-.disabledBtn:hover {
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
 .out-of-stock {
   font-weight: bold;
 }
