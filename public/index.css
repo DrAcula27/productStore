@@ -1,7 +1,7 @@
 /* grid layout */
 #product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 154px);
+  grid-template-columns: repeat(auto-fit, 154px);
   grid-auto-rows: 154px;
   gap: 10px;
   border: 2px solid var(--navy-blue);
