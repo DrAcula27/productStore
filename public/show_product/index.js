@@ -105,7 +105,6 @@ setTimeout(() => {
           buyBtn.classList.remove("hidden");
         }
       });
-      // location.reload();
     });
   }
 }, 500);
